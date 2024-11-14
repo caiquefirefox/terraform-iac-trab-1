@@ -48,3 +48,14 @@ variable "rds_db_password" {
   type        = string
   sensitive   = true
 }
+
+variable "instance_type" {
+  default = "t2.micro"
+}
+
+variable "availability_zones" {
+  description = "List of Availability Zones to be used for subnets"
+  type        = list(string)
+  default     = ["us-east-1a", "us-east-1b"]
+}
+
