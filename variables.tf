@@ -26,3 +26,25 @@ variable "token" {
   type        = string
   sensitive   = true
 }
+
+variable "bucket_name" {
+  description = "Nome do bucket S3"
+}
+
+variable "rds_db_name" {
+  description = "Nome da Base de Dados do RDS"
+  type        = string
+  sensitive   = true
+}
+
+variable "rds_db_user" {
+  description = "Usuário da Base de Dados do RDS"
+  type        = string
+  sensitive   = true
+}
+
+variable "rds_db_password" {
+  description = "Senha da Base de Dados do RDS"
+  type        = string
+  sensitive   = true
+}
