@@ -1,4 +1,4 @@
-resource "aws_instance" "ec2_instance" {
+resource "aws_instance" "ec2_application" {
   ami                    = lookup(var.aws_amis, var.aws_region)
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.public_subnet.id
@@ -72,5 +72,5 @@ resource "aws_security_group" "ec2_sg" {
 }
 
 output "ec2_public_ip" {
-  value = aws_instance.ec2_instance.public_ip
+  value = aws_instance.ec2_application.public_ip
 }
