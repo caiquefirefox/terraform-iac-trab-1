@@ -5,7 +5,7 @@ resource "aws_instance" "ec2_application" {
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
 
   user_data = <<-EOF
-              # Atualizar os pacotes do sistema
+              #!/bin/bash
               sudo yum update -y
               sudo yum install -y httpd
               sudo yum install -y mariadb-server

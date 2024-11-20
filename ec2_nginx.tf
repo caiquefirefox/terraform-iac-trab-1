@@ -5,6 +5,7 @@ resource "aws_instance" "ec2_nginx" {
   vpc_security_group_ids = [aws_security_group.nginx_sg.id]
 
   user_data = <<-EOF
+              #!/bin/bash
               sudo yum update -y
               sudo amazon-linux-extras enable nginx1
               sudo yum install -y nginx
