@@ -6,25 +6,18 @@ resource "aws_instance" "ec2_application" {
 
   user_data = <<-EOF
               # Atualizar os pacotes do sistema
-              apt-get update -y
-
-              # Instalar o Apache2
-              apt-get install -y apache2
-
-              # Instalar MySQL
-              apt-get install -y mysql-server
-
-              # Instalar PHP e as extensões necessárias para o Apache e MySQL
-              apt-get install -y php libapache2-mod-php php-mysql
-
-              # Iniciar o Apache2 e MySQL
-              systemctl start apache2
-              systemctl enable apache2
-              systemctl start mysql
-              systemctl enable mysql
-
-              # Recarregar o Apache2 para aplicar as configurações
-              systemctl restart apache2
+              sudo yum update -y
+              sudo yum install -y httpd
+              sudo yum install -y mariadb-server
+              sudo amazon-linux-extras enable php8.0
+              sudo yum install -y php php-mysqlnd
+              sudo systemctl start httpd
+              sudo systemctl enable httpd
+              sudo systemctl start mariadb
+              sudo systemctl enable mariadb
+              sudo systemctl restart httpd
+              echo '<?php echo "Hello World from PHP!"; ?>' | sudo tee /var/www/html/hello.php
+              sudo chmod 644 /var/www/html/hello.php
             EOF
 
   tags = {
